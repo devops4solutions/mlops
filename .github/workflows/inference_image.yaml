@@ -1,0 +1,52 @@
+name: "Build Inference Image"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+env:
+  IMAGE_NAME: mlops-inference
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: containers/inference
+
+    steps:
+      - name: Checkout main repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Set full image name
+        run: |
+          echo "FULL_IMAGE_NAME=936379345511.dkr.ecr.us-east-1.amazonaws.com/${{ env.IMAGE_NAME }}" >> $GITHUB_ENV
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build & Push Image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./containers/inference
+          file: ./containers/inference/Dockerfile
+          push: true
+          platforms: linux/amd64
+          tags: |
+            ${{ env.FULL_IMAGE_NAME }}:latest
+            ${{ env.FULL_IMAGE_NAME }}:${{ github.sha }}
