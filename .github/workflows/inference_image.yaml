@@ -46,7 +46,6 @@ jobs:
           context: ./containers/inference
           file: ./containers/inference/Dockerfile
           push: true
-          platforms: linux/amd64
           tags: |
             ${{ env.FULL_IMAGE_NAME }}:latest
             ${{ env.FULL_IMAGE_NAME }}:${{ github.sha }}
