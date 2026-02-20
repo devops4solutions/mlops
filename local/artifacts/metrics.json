@@ -1,0 +1,10 @@
+{
+  "accuracy": 0.9824561403508771,
+  "f1": 0.9861111111111112,
+  "roc_auc": 0.9953703703703703,
+  "rows_train": 455,
+  "rows_val": 114,
+  "trained_at": "2026-02-20T14:58:11.199199Z",
+  "dataset": "sklearn.datasets.load_breast_cancer",
+  "model": "LogisticRegression + StandardScaler"
+}
