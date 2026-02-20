@@ -2,12 +2,12 @@ FROM python:3.11-slim
 
 WORKDIR /opt/program
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir fastapi uvicorn joblib scikit-learn pydantic
 
-COPY inference.py .
+COPY inference.py /opt/program/inference.py
+COPY serve_entrypoint.py /opt/program/serve_entrypoint.py
 
-ENV PORT=8080
 EXPOSE 8080
 
-CMD ["uvicorn", "inference:app", "--host", "0.0.0.0", "--port", "8080"]
+ENTRYPOINT ["python", "/opt/program/serve_entrypoint.py"]
+CMD ["serve"]

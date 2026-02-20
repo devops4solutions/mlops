@@ -1,0 +1,8 @@
+{
+  "ModelName": "mlops-demo-model-002",
+  "ExecutionRoleArn": "arn:aws:iam::936379345511:role/mlops-sagemaker-role",
+  "PrimaryContainer": {
+    "Image": "936379345511.dkr.ecr.us-east-1.amazonaws.com/mlops-inference:latest",
+    "ModelDataUrl": "s3://mlops-devops4solutions/training-output/mlops-demo-train-001/output/model.tar.gz"
+  }
+}

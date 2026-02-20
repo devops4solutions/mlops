@@ -1,0 +1,12 @@
+{
+  "EndpointConfigName": "mlops-demo-epc-002",
+  "ProductionVariants": [
+    {
+      "VariantName": "AllTraffic",
+      "ModelName": "mlops-demo-model-002",
+      "InitialInstanceCount": 1,
+      "InstanceType": "ml.m5.large",
+      "InitialVariantWeight": 1.0
+    }
+  ]
+}

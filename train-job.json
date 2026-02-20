@@ -1,0 +1,20 @@
+{
+  "TrainingJobName": "mlops-demo-train-001",
+  "RoleArn": "arn:aws:iam::936379345511:role/mlops-sagemaker-role",
+  "AlgorithmSpecification": {
+    "TrainingImage": "936379345511.dkr.ecr.us-east-1.amazonaws.com/mlops-train:latest",
+    "TrainingInputMode": "File",
+    "TrainingImageConfig": {
+      "TrainingRepositoryAccessMode": "Platform"
+    }
+  },
+  "ResourceConfig": {
+    "InstanceType": "ml.m5.large",
+    "InstanceCount": 1,
+    "VolumeSizeInGB": 30
+  },
+  "StoppingCondition": { "MaxRuntimeInSeconds": 3600 },
+  "OutputDataConfig": {
+    "S3OutputPath": "s3://mlops-devops4solutions/training-output/"
+  }
+}
