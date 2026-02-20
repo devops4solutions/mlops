@@ -11,7 +11,7 @@ jobs:
     defaults:
      run:
       shell: bash
-      working_directory: containers/train
+      working-directory: containers/train
     steps:
       - name: Checkout main repository
         uses: actions/checkout@v3
