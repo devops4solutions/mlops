@@ -8,7 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    working_directory: containers/train
+    defaults:
+     run:
+      shell: bash
+      working_directory: containers/train
     steps:
       - name: Checkout main repository
         uses: actions/checkout@v3
