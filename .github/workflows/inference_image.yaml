@@ -43,8 +43,5 @@ jobs:
           IMAGE_TAG: latest
         run: |
           IMAGE_URI_LATEST="$ECR_REGISTRY/${{ env.IMAGE_NAME }}:latest"
-          docker build \
-            -f containers/inference/Dockerfile \
-            -t "$IMAGE_URI_LATEST" \
-            containers/inference
+          docker build -f containers/inference/Dockerfile -t "$IMAGE_URI_LATEST"
           docker push "$IMAGE_URI_LATEST"
